@@ -18,8 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .card{
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
-<body>
+<body style="padding-bottom: 100px">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -33,7 +38,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>
+                            <a href="{{ url('/threads') }}">
+                                Threads
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
