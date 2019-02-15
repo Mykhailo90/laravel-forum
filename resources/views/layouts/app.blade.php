@@ -38,11 +38,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li>
-                            <a href="{{ url('/threads') }}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/threads') }}">
                                 Threads
                             </a>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Channels</a>
+                            <div class="dropdown-menu">
+                                @foreach(App\Channel::all() as $one)
+                                    <a class="dropdown-item" href="/threads/{{$one->slug}}">{{$one->name}}</a>
+                                @endforeach
+                            </div>
+                        </li>
+
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
