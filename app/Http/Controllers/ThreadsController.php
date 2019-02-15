@@ -45,7 +45,8 @@ class ThreadsController extends Controller
         $thread = Thread::create([
             'title' => $request->title,
             'body' => $request->body,
-            'user_id' => auth()->id()
+            'user_id' => auth()->id(),
+            'channel_id' => $request->channel_id
         ]);
 
         return redirect($thread->path());
@@ -54,10 +55,11 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param $chanelId
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $thread)
+    public function show($chanelId, Thread $thread)
     {
 
         return view('threads.show', compact('thread'));

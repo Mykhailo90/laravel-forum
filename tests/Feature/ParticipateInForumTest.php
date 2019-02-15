@@ -16,8 +16,8 @@ class ParticipateInForumTest extends TestCase
     {
         parent::setUp();
 
-        $this->thread = factory('App\Thread')->create();
-        $this->reply = factory('App\Reply')->make();
+        $this->thread = create('App\Thread');
+        $this->reply = make('App\Reply');
     }
 
     /**
@@ -25,7 +25,7 @@ class ParticipateInForumTest extends TestCase
     */
    public function a_authentificated_user_may_participate_in_forum_threads()
    {
-       $this->be(factory('App\User')->create());
+       $this->signIn(create('App\User'));
 
       $this->post($this->thread->path().'/replies', $this->reply->toArray());
 
@@ -38,9 +38,8 @@ class ParticipateInForumTest extends TestCase
      */
     public function an_authentificated_user_may_not_add_replies()
     {
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-
-        $this->post($this->thread->path().'/replies', $this->reply->toArray());
-
+       $this->withExceptionHandling()
+           ->post($this->thread->path().'/replies', $this->reply->toArray())
+           ->assertRedirect('/login');
     }
 }

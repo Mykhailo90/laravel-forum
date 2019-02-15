@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
 {
-//    use DatabaseMigrations;
+    use DatabaseMigrations;
 
 
     protected $thread;
@@ -17,7 +17,7 @@ class CreateThreadsTest extends TestCase
     {
         parent::setUp();
 
-        $this->thread = make('App\Thread');
+        $this->thread = create('App\Thread');
         $this->user = create('App\User');
     }
     /**
@@ -48,17 +48,13 @@ class CreateThreadsTest extends TestCase
      */
     public function guests_may_not_create_threads()
     {
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-        $this->post('/threads', $this->thread->toArray());
+        $this->withExceptionHandling();
+
+            $this->get('/threads/create')
+            ->assertRedirect('/login');
+
+        $this->post('/threads')
+            ->assertRedirect('/login');
     }
 
-    /**
-     * @test
-     */
-    public function guests_can_not_to_see_create_thread_page()
-    {
-        $this->withExceptionHandling()
-                ->get('/threads/create')
-                ->assertRedirect('/login');
-    }
 }
