@@ -53,6 +53,13 @@
                             </div>
                         </li>
 
+                        @if(auth()->check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/threads/create') }}">
+                                New Thread
+                            </a>
+                        </li>
+                        @endif
 
                     </ul>
 

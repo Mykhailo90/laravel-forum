@@ -54,6 +54,7 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+            'socket' => '/Volumes/Storage/cache/msarapii/Library/Containers/MAMP/mysql/tmp/mysql.sock'
         ],
 
         'pgsql' => [
