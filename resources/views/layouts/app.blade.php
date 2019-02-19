@@ -22,9 +22,19 @@
         .card{
             margin-bottom: 20px;
         }
+        body{
+            padding-bottom: 100px;
+        }
+        .level{
+            display: flex;
+            align-items: center;
+        }
+        .flex{
+            flex: 1;
+        }
     </style>
 </head>
-<body style="padding-bottom: 100px">
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -55,6 +65,7 @@
                                 @if (auth()->check())
                                 <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My Threads</a>
                                 @endif
+                                <a class="dropdown-item" href="/threads?popular=1">Popular Threads</a>
                             </div>
                         </li>
 
